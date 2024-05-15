@@ -36,8 +36,8 @@ do
   elif [[ ! $GUESS =~ ^[0-9]+$ ]]
   then
     echo "That is not an integer, guess again:"
+    read GUESS
   fi 
 done
 # if number guessed
-
-echo "You guessed it in $NUMBER_OF_GUESSES tries. The secret number was $SECRET_NUMBER. Nice job!"
+echo "You guessed it in $NUMBER_OF_GUESSES tries. The secret number was $RANDOM_NUMBER. Nice job!"
