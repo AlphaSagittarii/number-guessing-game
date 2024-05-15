@@ -1,5 +1,5 @@
 #!/bin/bash
-PSQL="psql --username=freecodecamp --dbname=number_guessing_game -t --no-align -c"
+PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 RANDOM_NUMBER=$(( (RANDOM % 1000) + 1 ))
 echo $RANDOM_NUMBER
 
@@ -20,6 +20,7 @@ fi
 # guess the number
 echo "Guess the secret number between 1 and 1000:"
 read GUESS
+COUNT=0
 while [[ $RANDOM_NUMBER != $GUESS ]]
 do
   # if number higher than guess
@@ -27,11 +28,13 @@ do
   then
     echo "It's lower than that, guess again:"
     read GUESS
+    $COUNT+=1
   #if number lower than guess
   elif [[ $GUESS -lt $RANDOM_NUMBER ]]
   then
     echo "It's higher than that, guess again:"
     read GUESS
+    $COUNT+=1
   # if number not int
   elif [[ ! $GUESS =~ ^[0-9]+$ ]]
   then
@@ -40,4 +43,4 @@ do
   fi 
 done
 # if number guessed
-echo "You guessed it in $NUMBER_OF_GUESSES tries. The secret number was $RANDOM_NUMBER. Nice job!"
+echo "You guessed it in $COUNT tries. The secret number was $RANDOM_NUMBER. Nice job!"
